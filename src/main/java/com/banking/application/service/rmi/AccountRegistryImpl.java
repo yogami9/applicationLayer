@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 /**
  * Implementation of the AccountRegistry for RMI clients.
+ * No longer extends UnicastRemoteObject to avoid double-export.
  */
 @Service
-public class AccountRegistryImpl extends UnicastRemoteObject implements AccountRegistry {
+public class AccountRegistryImpl implements AccountRegistry {
     
     private static final Logger logger = LogManager.getLogger(AccountRegistryImpl.class);
     
@@ -24,11 +24,9 @@ public class AccountRegistryImpl extends UnicastRemoteObject implements AccountR
     
     /**
      * Constructor.
-     * 
-     * @throws RemoteException If a remote error occurs
      */
-    public AccountRegistryImpl() throws RemoteException {
-        super();
+    public AccountRegistryImpl() {
+        // No need to call super() or throw RemoteException anymore
     }
     
     @Override

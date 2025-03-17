@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: banking-application-service
+    env: docker
+    plan: free # Or select an appropriate plan
+    dockerfilePath: Dockerfile
+    region: ohio # Choose appropriate region
+    envVars:
+      - key: DATABASE_TIER_URL
+        value: https://databasetier.onrender.com
+      - key: PORT
+        value: 8080
+      - key: RMI_PORT
+        value: 1099
+    healthCheckPath: /actuator/health

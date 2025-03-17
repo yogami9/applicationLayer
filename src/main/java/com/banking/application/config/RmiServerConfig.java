@@ -1,5 +1,6 @@
 package com.banking.application.config;
 
+import com.banking.application.service.rmi.AccountRegistry;
 import com.banking.application.service.rmi.AccountRegistryImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,7 @@ public class RmiServerConfig {
         RmiServiceExporter exporter = new RmiServiceExporter();
         exporter.setServiceName("AccountRegistry");
         exporter.setService(accountRegistry);
-        exporter.setServiceInterface(AccountRegistryImpl.class);
+        exporter.setServiceInterface(AccountRegistry.class); // Fixed: Using the interface instead of implementation
         exporter.setRegistryPort(rmiPort);
         return exporter;
     }
